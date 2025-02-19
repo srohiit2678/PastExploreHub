@@ -1,0 +1,67 @@
+Explore Hub - Database Schema**
+
+This schema defines the structure of the Explore Hub platform, ensuring a well-organized relational database to store and manage users, projects, approvals, comments, and associated metadata.
+
+1. Departments Table (Stores department details for categorization)
+
+department_id (Primary Key) - Auto-incrementing unique identifier for each department.
+department_name - Unique, non-null name representing a department in the institution.
+
+2. Users Table (Stores students, teachers, and admins)
+
+user_id (Primary Key) - Auto-incrementing unique identifier for each user.
+enroll_id - Unique college-assigned enrollment ID for students and faculty.
+name - Full name of the user.
+email - Unique email address for authentication and communication.
+password - Encrypted password for secure login.
+role - Defines user type as either 'Student', 'Teacher', or 'Admin'.
+department_id (Foreign Key → Departments) - Links users to their respective departments. Nullable for admins.
+
+3. Projects Table (Stores project details submitted by students)
+
+project_id (Primary Key) - Auto-incrementing unique identifier for each project.
+title - Project title.
+description - Detailed description of the project.
+student_id (Foreign Key → Users) - Links the project to the student who created it. On deletion, all associated projects are removed.
+guide_id (Foreign Key → Users) - Links the project to a guiding teacher. Nullable, deleted guides set to null.
+status - Project approval status: 'Pending', 'Approved', or 'Rejected'. Default is 'Pending'.
+department_id (Foreign Key → Departments) - Associates the project with a department.
+created_at - Timestamp marking the project's creation time.
+project_link - URL to the project repository or website.
+tech_stack - Technologies used in the project.
+
+4. Requests Table (Tracks project submissions for teacher approval)
+
+request_id (Primary Key) - Auto-incrementing unique identifier for each request.
+student_id (Foreign Key → Users) - Links request to the student submitting the project.
+guide_id (Foreign Key → Users) - Links request to the assigned guide for approval.
+project_id (Foreign Key → Projects) - Links request to the respective project.
+status - Status of the request: 'Pending', 'Approved', or 'Rejected'. Default is 'Pending'.
+requested_at - Timestamp marking when the request was made.
+reviewed_at - Nullable timestamp indicating when the request was reviewed.
+
+5. Tags Table (Stores tags used to categorize projects)
+
+tag_id (Primary Key) - Auto-incrementing unique identifier for each tag.
+tag_name - Unique, non-null name representing a project category or technology.
+
+6. Project_Tags Table (Many-to-Many relationship between Projects & Tags)
+project_id (Foreign Key → Projects) - Links a project to a tag.
+tag_id (Foreign Key → Tags) - Links a tag to a project.
+Primary Key: (`project_id`, `tag_id`) - Ensures each project-tag combination is unique.
+
+7. Comments Table (For feedback and discussions on projects)
+
+comment_id (Primary Key) - Auto-incrementing unique identifier for each comment.
+project_id (Foreign Key → Projects) - Links comment to the relevant project.
+user_id (Foreign Key → Users) - Links comment to the user who posted it.
+comment_text - Stores the content of the comment.
+created_at - Timestamp marking when the comment was posted.
+
+8. Files Table (Stores project-related documents and images)
+
+file_id (Primary Key) - Auto-incrementing unique identifier for each file.
+project_id (Foreign Key → Projects) - Links file to the respective project.
+file_path - Stores the file’s location in the system.
+file_type - Enum value defining the file type as either 'Document' or 'Image'.
+uploaded_at - Timestamp marking when the file was uploaded.
