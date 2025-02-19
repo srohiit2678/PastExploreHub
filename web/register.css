@@ -1,0 +1,98 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #506c9e, #46788c);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Container for the register form */
+.container {
+    display: flex;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    width: 800px;
+}
+
+/* Welcome Section Styling */
+.welcome-section {
+    background: linear-gradient(to right, #506c9e, #46788c);
+    color: white;
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* Logo Styling */
+.welcome-section img {
+    width: 100px;
+    margin-bottom: 20px;
+}
+
+/* Register Form Section */
+.register-section {
+    flex: 1;
+    padding: 40px;
+    text-align: center;
+	background:#eaeaf1
+
+}
+
+.register-section h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.register-section label {
+    display: block;
+    text-align: left;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.register-section input,
+.register-section select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.register-section button {
+    width: 100%;
+    padding: 10px;
+    background-color: #265c96;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.register-section button:hover {
+    background-color: #516d8b;
+}
+
+.register-section p {
+    margin-top: 10px;
+    color: #555;
+}
+
+.register-section a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+.register-section a:hover {
+    text-decoration: underline;
+}
