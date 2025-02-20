@@ -14,37 +14,37 @@ public class UserRegisterServlet extends HttpServlet {
    private String dbms_url = "jdbc:mysql://localhost:3306/ExploreHub?useSSL=false";
    private String dbms_user = "root";
    private String dbms_pass = "root";
-   private String Register_query;
+   private String Register_query = null;
 
    public UserRegisterServlet() {
    }
 
-   public void doGet(HttpServletRequest var1, HttpServletResponse var2) throws IOException, ServletException {
-      PrintWriter var3 = var2.getWriter();
-      String var4 = var1.getParameter("name");
-      String var5 = var1.getParameter("enroll_id");
-      String var6 = var1.getParameter("email");
-      int var7 = Integer.parseInt(var1.getParameter("department"));
-      String var8 = var1.getParameter("type");
-      String var9 = var1.getParameter("password");
-      this.Register_query = "INSERT INTO Users (enroll_id, name, email, password, role, department_id) values ('" + var5 + "','" + var4 + "','" + var6 + "','" + var9 + "','" + var8 + "'," + var7 + ")";
-      var3.println("<html><body>");
+   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+      PrintWriter out = response.getWriter();
+      String name = request.getParameter("name");
+      String enroll_id = request.getParameter("enroll_id");
+      String email = request.getParameter("email");
+      int department = Integer.parseInt(request.getParameter("department"));
+      String roll_Type = request.getParameter("type");
+      String password = request.getParameter("password");
+      this.Register_query = "INSERT INTO Users (enroll_id, name, email, password, role, department_id) values ('" + enroll_id + "','" + name + "','" + email + "','" + password + "','" + roll_Type + "'," + department + ")";
+      out.println("<html><body>");
 
       try {
          Class.forName(this.Load_Driver);
-         Connection var10 = DriverManager.getConnection(this.dbms_url, this.dbms_user, this.dbms_pass);
-         Statement var11 = var10.createStatement();
-         int var12 = var11.executeUpdate(this.Register_query);
-         if (var12 != 0) {
-            var3.println("<h1>register Successfully</h1>");
-            var2.sendRedirect("login.html");
+         Connection connection = DriverManager.getConnection(this.dbms_url, this.dbms_user, this.dbms_pass);
+         Statement statement = connection.createStatement();
+         int effects = statement.executeUpdate(this.Register_query);
+         if (effects != 0) {
+            out.println("<h1>register Successfully</h1>");
+            response.sendRedirect("login.html");
          } else {
-            var3.println("<h1>Registeration Not Done Successfully</h1>");
+            out.println("<h1>Registeration Not Done Successfully</h1>");
          }
 
-         var10.close();
-      } catch (Exception var13) {
-         var3.println(var13);
+         connection.close();
+      } catch (Exception e) {
+         out.println(e);
       }
 
    }
