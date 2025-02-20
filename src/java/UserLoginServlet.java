@@ -15,32 +15,32 @@ public class UserLoginServlet extends HttpServlet {
    private String dbms_url = "jdbc:mysql://localhost:3306/ExploreHub?useSSL=false";
    private String dbms_user = "root";
    private String dbms_pass = "root";
-   private String login_query;
+   private String login_query = null;
 
    public UserLoginServlet() {
    }
 
-   public void doGet(HttpServletRequest var1, HttpServletResponse var2) throws IOException, ServletException {
-      PrintWriter var3 = var2.getWriter();
-      String var4 = var1.getParameter("userid");
-      String var5 = var1.getParameter("password");
-      this.login_query = "select * from users where enroll_id='" + var4 + "' and password='" + var5 + "'";
-      var3.println("<html><body>");
+   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+      PrintWriter out = response.getWriter();
+      String enroll_id = request.getParameter("enroll_id");
+      String password = request.getParameter("password");
+      this.login_query = "select * from users where enroll_id='" + enroll_id + "' and password='" + password + "'";
+      out.println("<html><body>");
 
       try {
          Class.forName(this.Load_Driver);
-         Connection var6 = DriverManager.getConnection(this.dbms_url, this.dbms_user, this.dbms_pass);
-         Statement var7 = var6.createStatement();
-         ResultSet var8 = var7.executeQuery(this.login_query);
-         if (var8.next()) {
-            var3.println("<h1>Welcome to home</h1>");
-            var2.sendRedirect("Main.html");
+         Connection connection = DriverManager.getConnection(this.dbms_url, this.dbms_user, this.dbms_pass);
+         Statement statement = connection.createStatement();
+         ResultSet resultSet = statement.executeQuery(this.login_query);
+         if (resultSet.next()) {
+            out.println("<h1>Welcome to home</h1>");
+            response.sendRedirect("Main.html");
          }
-      } catch (Exception var9) {
-         var3.println(var9);
+      } catch (Exception e) {
+         out.println(e);
       }
 
-      var3.println("</body></html>");
-      var3.close();
+      out.println("</body></html>");
+      out.close();
    }
 }
