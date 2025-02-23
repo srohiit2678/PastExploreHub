@@ -5,15 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Explore Hub - Register</title>
     <link rel="stylesheet" href="register.css">
+    
+       <script type="text/javascript">
+    v =1;  
+    function Demo1(){
+    
+    if(v==1){
+        document.getElementById('x').innerHTML="Chameli Devi";
+            v=2;
+        }
+    else if(v==2){
+        document.getElementById('x').innerHTML="Group Of";
+     v=3;
+        }
+    else{
+       document.getElementById('x').innerHTML="Institutions";
+    v=1;
+        }
+    setTimeout(Demo1,2000);
+    }
+      
+    </script>
 </head>
-<body>
+<body onload="Demo1()">
     <div class="container">
         <!-- Welcome Section with Logo -->
 		
         <div class="welcome-section">
             <h2>Join Explore Hub</h2>
 			<img src="cdgi.png" alt="Explore College Logo"><br><br><br><br><br><br>
-			<h2 style="color:yellow;">Chameli Devi Group Of Institutions</h2><br><br><br><br>
+			<h2 style="color:yellow;" id="x"></h2><br><br><br><br>
             <p>Sign up and start exploring amazing projects with expert guidance.</p>
         </div>
         
