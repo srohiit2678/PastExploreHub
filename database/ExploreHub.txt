@@ -40,6 +40,13 @@ status - Status of the request: 'Pending', 'Approved', or 'Rejected'. Default is
 requested_at - Timestamp marking when the request was made.
 reviewed_at - Nullable timestamp indicating when the request was reviewed.
 
+
+
+
+
+
+
+
 5. Tags Table (Stores tags used to categorize projects)
 
 tag_id (Primary Key) - Auto-incrementing unique identifier for each tag.
@@ -58,10 +65,21 @@ user_id (Foreign Key → Users) - Links comment to the user who posted it.
 comment_text - Stores the content of the comment.
 created_at - Timestamp marking when the comment was posted.
 
-8. Files Table (Stores project-related documents and images)
 
-file_id (Primary Key) - Auto-incrementing unique identifier for each file.
-project_id (Foreign Key → Projects) - Links file to the respective project.
-file_path - Stores the file’s location in the system.
-file_type - Enum value defining the file type as either 'Document' or 'Image'.
-uploaded_at - Timestamp marking when the file was uploaded.
+
+
+
+
+
+
+
+8. Files Table (Stores project-related documents and images)
+CREATE TABLE Files (
+    file_id INT AUTO_INCREMENT PRIMARY KEY,
+    project_id INT NOT NULL,
+    file_data LONGBLOB NOT NULL,   -- Store actual file content
+    file_name VARCHAR(255) NOT NULL,   -- Store original filename
+    file_type VARCHAR(50) NOT NULL,    -- Store MIME type (e.g., image/png, application/pdf)
+    uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,  -- Store upload time
+    FOREIGN KEY (project_id) REFERENCES Projects(project_id) ON DELETE CASCADE
+);
