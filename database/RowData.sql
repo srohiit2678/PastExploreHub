@@ -59,10 +59,3 @@ INSERT INTO Comments (project_id, user_id, comment_text, created_at) VALUES
 (5, 5, 'AI-based resume screening can streamline hiring!', NOW());
 
 -- Insert into Files (Project-related documents and images)
-INSERT INTO Files (project_id, file_path, file_type, uploaded_at) VALUES
-(1, '/uploads/traffic_ai_doc.pdf', 'Document', NOW()),
-(2, '/uploads/iot_home_img1.jpg', 'Image', NOW()),
-(3, '/uploads/ai_chatbot_doc.pdf', 'Document', NOW()),
-(4, '/uploads/blockchain_voting_img2.jpg', 'Image', NOW()),
-(5, '/uploads/resume_ai_doc.pdf', 'Document', NOW());
-S
