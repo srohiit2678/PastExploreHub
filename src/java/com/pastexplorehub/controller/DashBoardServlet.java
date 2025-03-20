@@ -23,7 +23,7 @@ public class DashBoardServlet extends HttpServlet {
         //String userRole = request.getParameter("role");
         try
     {
-        List<Project> projects = Project.getALLProjects();
+        List<Project> projects = Project.getALLApprovedProjects();
         System.out.println(projects);
         HttpSession session = request.getSession(false);
         // If session is null or user not logged in, redirect to login page
