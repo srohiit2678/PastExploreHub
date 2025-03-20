@@ -2,15 +2,15 @@
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
         <servlet-name>UserLoginServlet</servlet-name>
-        <servlet-class>UserLoginServlet</servlet-class>
+        <servlet-class>com.pastexplorehub.controller.UserLoginServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>UserRegisterServlet</servlet-name>
-        <servlet-class>UserRegisterServlet</servlet-class>
+        <servlet-class>com.pastexplorehub.controller.UserRegisterServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>UserProjectRequest</servlet-name>
-        <servlet-class>UserProjectRequest</servlet-class>
+        <servlet-name>DashBoardServlet</servlet-name>
+        <servlet-class>com.pastexplorehub.controller.DashBoardServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>UserLoginServlet</servlet-name>
@@ -21,12 +21,10 @@
         <url-pattern>/UserRegisterServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>UserProjectRequest</servlet-name>
-        <url-pattern>/UserProjectRequest</url-pattern>
+        <servlet-name>DashBoardServlet</servlet-name>
+        <url-pattern>/DashBoardServlet</url-pattern>
     </servlet-mapping>
     <session-config>
-        <session-timeout>
-            30
-        </session-timeout>
+        <session-timeout>30</session-timeout>
     </session-config>
 </web-app>
