@@ -1,0 +1,102 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #506c9e, #46788c);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Container styles */
+.container {
+    display: flex;
+    background: rgb(212, 211, 211);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 15px 15px 15px white;
+    width: 800px;
+}
+
+/* Welcome section (left side) */
+.welcome-section {
+    background: linear-gradient(to right, #506c9e, #46788c);
+    color: white;
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.welcome-section img {
+    width: 150px;
+    margin-bottom: 20px;
+}
+
+/* Login section (right side) */
+.login-section {
+    flex: 1;
+    padding: 40px;
+    text-align: center;
+	background:#eaeaf1
+
+}
+
+.login-section h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.login-section label {
+    display: block;
+    text-align: left;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.login-section input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.login-section input::placeholder {
+    color: #999;
+}
+
+/* Button styling */
+.login-section button {
+    width: 100%;
+    padding: 10px;
+    background-color: #265c96;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.login-section button:hover {
+    background-color: #516d8b;
+}
+
+/* Links */
+.login-section p {
+    margin-top: 10px;
+    color: #555;
+}
+
+.login-section a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+.login-section a:hover {
+    text-decoration: underline;
+}
