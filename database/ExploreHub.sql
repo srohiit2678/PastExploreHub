@@ -93,3 +93,6 @@ CREATE TABLE IF NOT EXISTS Project_Team (
     FOREIGN KEY (project_id) REFERENCES Projects(project_id) ON DELETE CASCADE,
     FOREIGN KEY (student_id) REFERENCES Users(user_id) ON DELETE CASCADE
 );
+
+
+ALTER TABLE Projects ADD COLUMN enroll_id VARCHAR(50) NOT NULL;ALTER TABLE Requests ADD COLUMN enroll_id VARCHAR(50) NOT NULL;ALTER TABLE Project_Team ADD COLUMN enroll_id VARCHAR(50) NOT NULL;ALTER TABLE Project_Team ADD CONSTRAINT fk_enroll FOREIGN KEY (enroll_id) REFERENCES Users(enroll_id);
