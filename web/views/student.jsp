@@ -81,7 +81,7 @@
                                 <th>Actions</th>
                             </tr>
                         </thead>
-                        
+                        <!--
                         <tbody>
                                   
                             <tr>
@@ -114,6 +114,7 @@
                                     <button class="view"><i class="fas fa-eye"></i></button>
                                 </td>
                             </tr>
+                        -->
                             <!--more Rows-->
                         <%
                         List<Project> ProjectList = (List<Project>) session.getAttribute("projects");
@@ -127,7 +128,7 @@
                                 <td><%= size++ %></td>
                                 <td><%= project.getTitle()%></td>
                                 <td><%= project.getGuidName() %></td>
-                                <td><%= project.getCreatedAt() %></td>
+                                <td><%= project.getCreatedAt().getDate() %> - <%=project.getCreatedAt().getMonth() %> - <%= project.getCreatedAt().getYear()+1900 %></td>
                                 <td><span class="status approved" title="Approved"></span></td>
                                 <td>
                                 <button class="view"><i class="fas fa-eye"></i></button>
@@ -137,7 +138,6 @@
                         </tbody>
                     </table>
                 </div>
-                
                 <!-- Pagination Controls -->
                 <div class="pagination">
                     <a href="#" class="prev">Previous</a>
