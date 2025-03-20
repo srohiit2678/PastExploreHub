@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Submission Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #e9f7fd; /* Light blue background */
+        }
+        .container {
+            max-width: 600px;
+            background: #ffffff; /* White background for form */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .btn-primary {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Submit Your Project</h2>
+        <form action="UserProjectRequest">
+            <div class="mb-3">
+                <label for="title" class="form-label">Project Title</label>
+                <input type="text" class="form-control" id="title" name="title" required>
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" id="description" name="description" rows="4" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="student_id" class="form-label">Student ID</label>
+                <input type="number" class="form-control" id="student_id" name="student_id" required>
+            </div>
+            <div class="mb-3">
+                <label for="guide_id" class="form-label">Guide ID</label>
+                <input type="number" class="form-control" id="guide_id" name="guide_id" required>
+            </div>
+            <input type="hidden" id="status" name="status" value="Pending">
+            <div class="mb-3">
+                <label for="department_id" class="form-label">Department ID</label>
+                <input type="number" class="form-control" id="department_id" name="department_id" required>
+            </div>
+            <div class="mb-3">
+                <label for="project_link" class="form-label">Project Link</label>
+                <input type="url" class="form-control" id="project_link" name="project_link">
+            </div>
+            <div class="mb-3">
+                <label for="tech_stack" class="form-label">Tech Stack</label>
+                <input type="text" class="form-control" id="tech_stack" name="tech_stack" required>
+            </div>
+            
+            <!-- File upload field for PDF -->
+            <div class="mb-3">
+                <label for="project_pdf" class="form-label">Upload Project PDF</label>
+                <input type="file" class="form-control" id="project_pdf" name="project_pdf" accept=".pdf">
+            </div>
+            
+            <!-- File upload field for multiple images -->
+            <div class="mb-3">
+                <label for="project_images" class="form-label">Upload Project Images</label>
+                <input type="file" class="form-control" id="project_images" name="project_images" accept=".jpg, .jpeg, .png" multiple>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Submit Project</button>
+        </form>
+    </div>
+</body>
+</html>
