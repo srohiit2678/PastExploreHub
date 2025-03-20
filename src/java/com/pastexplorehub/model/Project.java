@@ -17,35 +17,18 @@ public class Project {
  private String description;
  private int studentId;
  private Integer guideId; // Nullable field
- private String guidName;
  private String status;
  private Integer departmentId; // Nullable field
  private Timestamp createdAt;
  private String projectLink;
  private String techStack;
  private String enroll_id;
-private List<ProjectFile> files;  // Store all files for this project
-private String tages;  // tag  for this project
+ private List<ProjectFile> files;  // Store all files for this project
+ private String tages;  // tag  for this project
+ private String guidName;
 
-    public Project() {
-    }
+    public Project() { }
 
-/*    public Project(int projectId, String title, String description, int studentId, Integer guideId, String status, Integer departmentId,Timestamp createdAt, String projectLink, String techStack, String enroll_id, List<ProjectFile> files,String tages) {
-        this.projectId = projectId;
-        this.title = title;
-        this.description = description;
-        this.studentId = studentId;
-        this.guideId = guideId;
-        this.status = status;
-        this.departmentId = departmentId;
-        this.createdAt = createdAt;
-        this.projectLink = projectLink;
-        this.techStack = techStack;
-        this.enroll_id = enroll_id;
-        this.files = files;
-        this.tages = tages;
-    }
-*/
     
     public Project(int projectId, String title, String description, int studentId, Integer guideId, String guidName, String status, Integer departmentId, Timestamp createdAt, String projectLink, String techStack, String enroll_id, List<ProjectFile> files, String tages) {
         this.projectId = projectId;
@@ -188,6 +171,22 @@ private String tages;  // tag  for this project
         try(Connection conn = DBConnection.getConnection();
             Statement st = conn.createStatement())
         {
+           ResultSet rs = st.executeQuery("Select * from projects");
+           while(rs.next())
+           {
+            int project_id = rs.getInt("project_id");
+            int guid_id = rs.getInt("guide_id");
+            Project project = new Project(project_id,rs.getString("title"),rs.getString("description"),rs.getInt("student_id"),guid_id,ProjectGuid.getGuidNameById(guid_id),"Approved",rs.getInt("department_id"),rs.getTimestamp("created_at"),rs.getString("project_link"),rs.getString("tech_stack"),rs.getString("enroll_id"),ProjectFile.getProjectByProjectId(project_id),ProjectTages.getTagesByTagId(project_id));
+            projects.add(project);             
+           }
+        }
+     return projects;
+    }
+    public static List<Project> getALLApprovedProjects()throws SQLException
+    {   List<Project> projects = new ArrayList<>();
+        try(Connection conn = DBConnection.getConnection();
+            Statement st = conn.createStatement())
+        {
            ResultSet rs = st.executeQuery("Select * from projects where status = 'Approved'");
            while(rs.next())
            {
@@ -207,38 +206,3 @@ private String tages;  // tag  for this project
 }
 
 
-
-
-/*
-public static List<Project> getALLProjects() throws SQLException {
-    List<Project> projects = new ArrayList<>();
-
-    try (Connection conn = DBConnection.getConnection();
-         PreparedStatement st = conn.prepareStatement("SELECT * FROM projects WHERE status = 'Approved'")) {
-
-        ResultSet rs = st.executeQuery();
-
-        while (rs.next()) {
-            // Creating Project object and setting values
-            Project project = new Project();
-            project.setProjectId(rs.getInt("project_id"));
-            project.setTitle(rs.getString("title"));
-            project.setDescription(rs.getString("description"));
-            project.setStudentId(rs.getInt("student_id"));
-            project.setGuideId(rs.getInt("guide_id"));
-            project.setDepartmentId(rs.getInt("department_id"));
-            project.setCreatedAt(rs.getTimestamp("created_at"));
-            project.setProjectLink(rs.getString("project_link"));
-            project.setTechStack(rs.getString("tech_stack"));
-            project.setEnrollId(rs.getString("enroll_id"));
-
-            // Adding project object to the list
-            projects.add(project);
-        }
-    }
-
-    return projects;
-}
-
-
-*/
