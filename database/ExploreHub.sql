@@ -75,11 +75,24 @@ CREATE TABLE IF NOT EXISTS Comments (
 );
 
 -- Files table (Project-related documents and images)
-CREATE TABLE IF NOT EXISTS Files (
+CREATE TABLE Files (
     file_id INT AUTO_INCREMENT PRIMARY KEY,
     project_id INT NOT NULL,
-    file_path VARCHAR(255) NOT NULL,
-    file_type ENUM('Document', 'Image') NOT NULL,
-    uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    file_data LONGBLOB NOT NULL,   -- Store actual file content
+    file_name VARCHAR(255) NOT NULL,   -- Store original filename
+    file_type VARCHAR(50) NOT NULL,    -- Store MIME type (e.g., image/png, application/pdf)
+    uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,  -- Store upload time
     FOREIGN KEY (project_id) REFERENCES Projects(project_id) ON DELETE CASCADE
 );
+
+
+CREATE TABLE IF NOT EXISTS Project_Team (
+    project_id INT NOT NULL,
+    student_id INT NOT NULL,
+    PRIMARY KEY (project_id, student_id),
+    FOREIGN KEY (project_id) REFERENCES Projects(project_id) ON DELETE CASCADE,
+    FOREIGN KEY (student_id) REFERENCES Users(user_id) ON DELETE CASCADE
+);
+
+
+ALTER TABLE Projects ADD COLUMN enroll_id VARCHAR(50) NOT NULL;ALTER TABLE Requests ADD COLUMN enroll_id VARCHAR(50) NOT NULL;ALTER TABLE Project_Team ADD COLUMN enroll_id VARCHAR(50) NOT NULL;ALTER TABLE Project_Team ADD CONSTRAINT fk_enroll FOREIGN KEY (enroll_id) REFERENCES Users(enroll_id);

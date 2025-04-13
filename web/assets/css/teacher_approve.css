@@ -1,0 +1,278 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+/* Dashboard Container */
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background: #2c3e50;
+  color: white;
+  padding-top: 20px;
+  position: fixed;
+  height: 100%;
+  z-index: 100;
+  transition: transform 0.3s ease;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-header {
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+
+.profile-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.menu {
+  list-style: none;
+  padding: 0;
+}
+
+.menu li {
+  padding: 0;
+  margin: 5px 15px;
+}
+
+.menu li a {
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.menu li a i {
+  margin-right: 10px;
+}
+
+.menu li a:hover {
+  background: #1abc9c;
+}
+
+.menu .active a {
+  background: #1abc9c;
+}
+
+.logout-item {
+  margin-top: 50% !important;
+}
+
+/* Toggle Button */
+.toggle-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: #2c3e50;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 5px;
+  margin-right: 10px;
+}
+
+/* Main Content */
+.main-content {
+  margin-left: 250px;
+  padding: 20px;
+  width: calc(100% - 250px);
+  transition: margin-left 0.3s ease;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+#search {
+  padding: 8px;
+  width: 250px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Table */
+.project-list {
+  margin-top: 20px;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  text-align: center; /* Changed from left to center */
+}
+
+th {
+  background: #34495e;
+  color: white;
+}
+
+.status-cell {
+  text-align: center;
+}
+
+/* Status Dropdown Styling */
+.status-dropdown {
+  padding: 6px 8px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  background-color: white;
+  font-size: 14px;
+  cursor: pointer;
+  width: 100px;
+  text-align: center; /* Center text in dropdown */
+}
+
+/* Row color styling based on status */
+.approved-row .status-dropdown {
+  border-left: 4px solid #2ecc71;
+}
+
+.rejected-row .status-dropdown {
+  border-left: 4px solid #e74c3c;
+}
+
+.pending-row .status-dropdown {
+  border-left: 4px solid #f1c40f;
+}
+
+/* Action Buttons */
+button {
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin: 2px;
+  border-radius: 5px;
+}
+
+.view {
+  background: #3498db;
+  color: white;
+}
+
+.edit {
+  background: #f39c12;
+  color: white;
+}
+
+.delete {
+  background: #e74c3c;
+  color: white;
+}
+
+/* Pagination */
+.pagination {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination a {
+  padding: 8px 12px;
+  margin: 0 20px;
+  text-decoration: none;
+  color: white;
+  background: #3498db;
+  border-radius: 5px;
+}
+
+.pagination a:hover {
+  background: #2980b9;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .sidebar {
+    transform: translateX(-250px);
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .sidebar.active {
+    transform: translateX(0);
+  }
+  
+  .main-content {
+    margin-left: 0;
+    width: 100%;
+  }
+  
+  .toggle-btn {
+    display: block;
+  }
+  
+  #search {
+    width: 150px;
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  #search {
+    margin-top: 10px;
+    width: 100%;
+  }
+  
+  .pagination {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .status-dropdown {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  th, td {
+    padding: 8px 5px;
+    font-size: 14px;
+  }
+  
+  button {
+    padding: 4px 8px;
+  }
+}
