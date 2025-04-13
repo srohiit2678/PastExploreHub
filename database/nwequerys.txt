@@ -1,0 +1,531 @@
+
+when all data is deleted
+
+ALTER TABLE department AUTO_INCREMENT = 1;
+ALTER TABLE users AUTO_INCREMENT = 1;
+ALTER TABLE projects AUTO_INCREMENT = 1;
+ALTER TABLE files AUTO_INCREMENT = 1;
+ALTER TABLE tags AUTO_INCREMENT = 1;
+ALTER TABLE project_tags AUTO_INCREMENT = 1;
+ALTER TABLE project_team AUTO_INCREMENT = 1;
+ALTER TABLE requests AUTO_INCREMENT = 1;
+ALTER TABLE comments AUTO_INCREMENT = 1;
+
+
+
+SELECT * FROM explorehub.departments;
+
+INSERT INTO departments (department_id, department_name) VALUES 
+(4, 'General Administration');
+
+SELECT * FROM explorehub.departments;
+
+	
+	
+
+data for user table
+
+
+SELECT * FROM explorehub.users;
+
+INSERT INTO users (user_id, enroll_id, name, email, password, role, department_id) VALUES 
+(1, 'CS2024001', 'Ravi Sharma', 'ravi.sharma@college.com', 'ravi123', 'Admin', 1), -- Admin for CS
+(2, 'IT2024002', 'Anjali Verma', 'anjali.verma@college.com', 'anjali123', 'Admin', 2), -- Admin for IT
+(3, 'AIML2024003', 'Vikram Iyer', 'vikram.iyer@college.com', 'vikram123', 'Admin', 3), -- Admin for AIML
+(4, 'GEN2024004', 'Dr. Rajesh Mehta', 'rajesh.mehta@college.com', 'rajesh123', 'Admin', 4); -- General Admin assigned to General Administration
+
+
+SELECT * FROM explorehub.users;
+
+INSERT INTO users (user_id, enroll_id, name, email, password, role, department_id) VALUES 
+-- Computer Science Teachers
+(5, 'CS2024005', 'Amit Khanna', 'amit.khanna@college.com', 'amit123', 'Teacher', 1),
+(6, 'CS2024006', 'Priya Deshmukh', 'priya.deshmukh@college.com', 'priya123', 'Teacher', 1),
+(7, 'CS2024007', 'Manoj Pillai', 'manoj.pillai@college.com', 'manoj123', 'Teacher', 1),
+
+-- Information Technology Teachers
+(8, 'IT2024008', 'Sneha Nair', 'sneha.nair@college.com', 'sneha123', 'Teacher', 2),
+(9, 'IT2024009', 'Rahul Patil', 'rahul.patil@college.com', 'rahul123', 'Teacher', 2),
+(10, 'IT2024010', 'Neha Saxena', 'neha.saxena@college.com', 'neha123', 'Teacher', 2),
+
+-- Artificial Intelligence & Machine Learning Teachers
+(11, 'AIML2024011', 'Sandeep Reddy', 'sandeep.reddy@college.com', 'sandeep123', 'Teacher', 3),
+(12, 'AIML2024012', 'Meera Iyer', 'meera.iyer@college.com', 'meera123', 'Teacher', 3),
+(13, 'AIML2024013', 'Arjun Das', 'arjun.das@college.com', 'arjun123', 'Teacher', 3);
+
+SELECT * FROM explorehub.users;
+
+INSERT INTO users (user_id, enroll_id, name, email, password, role, department_id) VALUES 
+-- Computer Science Students (24) (Already Complete)
+(14, 'CS2024014', 'Vikas Sharma', 'vikas.sharma@college.com', 'vikas123', 'Student', 1),
+(15, 'CS2024015', 'Pooja Mishra', 'pooja.mishra@college.com', 'pooja123', 'Student', 1),
+(16, 'CS2024016', 'Rohan Gupta', 'rohan.gupta@college.com', 'rohan123', 'Student', 1),
+(17, 'CS2024017', 'Snehal Joshi', 'snehal.joshi@college.com', 'snehal123', 'Student', 1),
+(18, 'CS2024018', 'Karan Mehta', 'karan.mehta@college.com', 'karan123', 'Student', 1),
+(19, 'CS2024019', 'Deepika Verma', 'deepika.verma@college.com', 'deepika123', 'Student', 1),
+(20, 'CS2024020', 'Aditya Kulkarni', 'aditya.kulkarni@college.com', 'aditya123', 'Student', 1),
+(21, 'CS2024021', 'Mansi Patil', 'mansi.patil@college.com', 'mansi123', 'Student', 1),
+(22, 'CS2024022', 'Rahul Nair', 'rahul.nair@college.com', 'rahul123', 'Student', 1),
+(23, 'CS2024023', 'Anjali Saxena', 'anjali.saxena@college.com', 'anjali123', 'Student', 1),
+(24, 'CS2024024', 'Siddharth Pillai', 'siddharth.pillai@college.com', 'siddharth123', 'Student', 1),
+(25, 'CS2024025', 'Priya Menon', 'priya.menon@college.com', 'priya123', 'Student', 1),
+(26, 'CS2024026', 'Amit Kumar', 'amit.kumar@college.com', 'amit123', 'Student', 1),
+(27, 'CS2024027', 'Neha Singh', 'neha.singh@college.com', 'neha123', 'Student', 1),
+(28, 'CS2024028', 'Varun Shetty', 'varun.shetty@college.com', 'varun123', 'Student', 1),
+(29, 'CS2024029', 'Ritika Jain', 'ritika.jain@college.com', 'ritika123', 'Student', 1),
+(30, 'CS2024030', 'Harsh Goel', 'harsh.goel@college.com', 'harsh123', 'Student', 1),
+(31, 'CS2024031', 'Megha Chopra', 'megha.chopra@college.com', 'megha123', 'Student', 1),
+(32, 'CS2024032', 'Rajeev Thakur', 'rajeev.thakur@college.com', 'rajeev123', 'Student', 1),
+(33, 'CS2024033', 'Tanvi Aggarwal', 'tanvi.aggarwal@college.com', 'tanvi123', 'Student', 1),
+(34, 'CS2024034', 'Saurabh Malhotra', 'saurabh.malhotra@college.com', 'saurabh123', 'Student', 1),
+(35, 'CS2024035', 'Shreya Kapoor', 'shreya.kapoor@college.com', 'shreya123', 'Student', 1),
+(36, 'CS2024036', 'Manoj Deshmukh', 'manoj.deshmukh@college.com', 'manoj123', 'Student', 1),
+(37, 'CS2024037', 'Swati Bhatt', 'swati.bhatt@college.com', 'swati123', 'Student', 1),
+
+-- Information Technology Students (24)
+(38, 'IT2024038', 'Aryan Tiwari', 'aryan.tiwari@college.com', 'aryan123', 'Student', 2),
+(39, 'IT2024039', 'Nikita Desai', 'nikita.desai@college.com', 'nikita123', 'Student', 2),
+(40, 'IT2024040', 'Saurabh Rane', 'saurabh.rane@college.com', 'saurabh123', 'Student', 2),
+(41, 'IT2024041', 'Rachana Gokhale', 'rachana.gokhale@college.com', 'rachana123', 'Student', 2),
+(42, 'IT2024042', 'Vivek Bansal', 'vivek.bansal@college.com', 'vivek123', 'Student', 2),
+(43, 'IT2024043', 'Pallavi Chauhan', 'pallavi.chauhan@college.com', 'pallavi123', 'Student', 2),
+(44, 'IT2024044', 'Naveen Dubey', 'naveen.dubey@college.com', 'naveen123', 'Student', 2),
+(45, 'IT2024045', 'Sneha Kaur', 'sneha.kaur@college.com', 'sneha123', 'Student', 2),
+(46, 'IT2024046', 'Rajat Kapoor', 'rajat.kapoor@college.com', 'rajat123', 'Student', 2),
+(47, 'IT2024047', 'Aditi Nair', 'aditi.nair@college.com', 'aditi123', 'Student', 2),
+(48, 'IT2024048', 'Rohan Choudhary', 'rohan.choudhary@college.com', 'rohan123', 'Student', 2),
+(49, 'IT2024049', 'Meera Acharya', 'meera.acharya@college.com', 'meera123', 'Student', 2),
+(50, 'IT2024050', 'Vikrant Saxena', 'vikrant.saxena@college.com', 'vikrant123', 'Student', 2),
+(51, 'IT2024051', 'Harini Menon', 'harini.menon@college.com', 'harini123', 'Student', 2),
+(52, 'IT2024052', 'Shashank Tiwari', 'shashank.tiwari@college.com', 'shashank123', 'Student', 2),
+(53, 'IT2024053', 'Snehal Deshpande', 'snehal.deshpande@college.com', 'snehal123', 'Student', 2),
+(54, 'IT2024054', 'Ravi Chaturvedi', 'ravi.chaturvedi@college.com', 'ravi123', 'Student', 2),
+(55, 'IT2024055', 'Ananya Rao', 'ananya.rao@college.com', 'ananya123', 'Student', 2),
+(56, 'IT2024056', 'Manish Kapoor', 'manish.kapoor@college.com', 'manish123', 'Student', 2),
+(57, 'IT2024057', 'Tanya Joshi', 'tanya.joshi@college.com', 'tanya123', 'Student', 2),
+(58, 'IT2024058', 'Amit Trivedi', 'amit.trivedi@college.com', 'amit123', 'Student', 2),
+(59, 'IT2024059', 'Neelam Rathi', 'neelam.rathi@college.com', 'neelam123', 'Student', 2),
+(60, 'IT2024060', 'Devendra Mishra', 'devendra.mishra@college.com', 'devendra123', 'Student', 2),
+(61, 'IT2024061', 'Roshni Bhattacharya', 'roshni.bhattacharya@college.com', 'roshni123', 'Student', 2),
+
+-- Artificial Intelligence & Machine Learning Students (24)
+(62, 'AIML2024062', 'Dhruv Nair', 'dhruv.nair@college.com', 'dhruv123', 'Student', 3),
+(63, 'AIML2024063', 'Shruti Iyer', 'shruti.iyer@college.com', 'shruti123', 'Student', 3),
+(64, 'AIML2024064', 'Pranav Rao', 'pranav.rao@college.com', 'pranav123', 'Student', 3),
+(65, 'AIML2024065', 'Ayesha Khan', 'ayesha.khan@college.com', 'ayesha123', 'Student', 3),
+(66, 'AIML2024066', 'Gautam Pillai', 'gautam.pillai@college.com', 'gautam123', 'Student', 3),
+(67, 'AIML2024067', 'Komal Sharma', 'komal.sharma@college.com', 'komal123', 'Student', 3),
+(68, 'AIML2024068', 'Sandeep Joshi', 'sandeep.joshi@college.com', 'sandeep123', 'Student', 3),
+(69, 'AIML2024069', 'Ishita Deshmukh', 'ishita.deshmukh@college.com', 'ishita123', 'Student', 3),
+(70, 'AIML2024070', 'Akash Malhotra', 'akash.malhotra@college.com', 'akash123', 'Student', 3),
+(71, 'AIML2024071', 'Rhea Tandon', 'rhea.tandon@college.com', 'rhea123', 'Student', 3),
+(72, 'AIML2024072', 'Sumit Verma', 'sumit.verma@college.com', 'sumit123', 'Student', 3),
+(73, 'AIML2024073', 'Vaibhav Nair', 'vaibhav.nair@college.com', 'vaibhav123', 'Student', 3),
+(74, 'AIML2024074', 'Simran Mehta', 'simran.mehta@college.com', 'simran123', 'Student', 3),
+(75, 'AIML2024075', 'Harshit Kapoor', 'harshit.kapoor@college.com', 'harshit123', 'Student', 3),
+(76, 'AIML2024076', 'Kavya Rajput', 'kavya.rajput@college.com', 'kavya123', 'Student', 3),
+(77, 'AIML2024077', 'Yashwant Deshmukh', 'yashwant.deshmukh@college.com', 'yashwant123', 'Student', 3),
+(78, 'AIML2024078', 'Piyush Bansal', 'piyush.bansal@college.com', 'piyush123', 'Student', 3),
+(79, 'AIML2024079', 'Ritika Goyal', 'ritika.goyal@college.com', 'ritika123', 'Student', 3),
+(80, 'AIML2024080', 'Pratiksha Verma', 'pratiksha.verma@college.com', 'pratiksha123', 'Student', 3),
+(81, 'AIML2024081', 'Nitin Choudhary', 'nitin.choudhary@college.com', 'nitin123', 'Student', 3),
+(82, 'AIML2024082', 'Saumya Bhatt', 'saumya.bhatt@college.com', 'saumya123', 'Student', 3),
+(83, 'AIML2024083', 'Arjun Malhotra', 'arjun.malhotra@college.com', 'arjun123', 'Student', 3),
+(84, 'AIML2024084', 'Rohini Saxena', 'rohini.saxena@college.com', 'rohini123', 'Student', 3),
+(85, 'AIML2024085', 'Akash Tripathi', 'akash.tripathi@college.com', 'akash123', 'Student', 3);
+
+
+SELECT * FROM explorehub.users;
+
+
+
+
+
+
+
+SELECT * FROM explorehub.projects;
+
+INSERT INTO projects (title, description, student_id, guide_id, status, department_id, created_at, project_link, tech_stack, enroll_id)
+VALUES 
+    ('AI Chatbot', 'A chatbot using NLP and ML techniques.', 14, 5, 'approved', 1, NOW(), 'https://github.com/example1', 'Python, TensorFlow', 'CS2024014'),
+    ('Smart Attendance System', 'Face recognition-based attendance system.', 18, 6, 'approved', 1, NOW(), 'https://github.com/example2', 'OpenCV, Python', 'CS2024018'),
+    ('E-Library Management', 'Digital library for storing and managing books.', 22, 7, 'approved', 1, NOW(), 'https://github.com/example3', 'Java, MySQL', 'CS2024022'),
+    ('IoT-Based Home Automation', 'Smart home automation using IoT devices.', 26, 8, 'approved', 1, NOW(), 'https://github.com/example4', 'Arduino, MQTT', 'CS2024026'),
+    ('Blockchain Voting System', 'Secure online voting system using blockchain.', 30, 9, 'approved', 1, NOW(), 'https://github.com/example5', 'Ethereum, Solidity', 'CS2024030'),
+    ('Online Examination Portal', 'A web-based system for conducting exams.', 34, 10, 'pending', 1, NOW(), 'https://github.com/example6', 'PHP, MySQL', 'CS2024034');
+    
+    SELECT * FROM explorehub.projects;
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	INSERT INTO explorehub.project_files (project_id, file_name, file_type, file_data) 
+VALUES 
+(1, 'AI_Chatbot_Report.pdf', 'pdf', LOAD_FILE('/path/to/AI_Chatbot_Report.pdf'));
+
+INSERT INTO explorehub.project_files (project_id, file_name, file_type, file_data) 
+VALUES 
+(1, 'AI_Chatbot_Architecture.png', 'image', LOAD_FILE('/path/to/AI_Chatbot_Architecture.png')),
+(1, 'AI_Chatbot_UI.png', 'image', LOAD_FILE('/path/to/AI_Chatbot_UI.png')),
+(1, 'AI_Chatbot_Flowchart.jpg', 'image', LOAD_FILE('/path/to/AI_Chatbot_Flowchart.jpg'));
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	SELECT * FROM explorehub.project_team;
+
+
+-- AI Chatbot (Team Lead: 14, Enroll ID: CS2024014)
+INSERT INTO project_team (project_id, student_id, enroll_id) VALUES
+    (1, 14, 'CS2024014'), (1, 15, 'CS2024015'), (1, 16, 'CS2024016'), (1, 17, 'CS2024017');
+
+-- Smart Attendance System (Team Lead: 18, Enroll ID: CS2024018)
+INSERT INTO project_team (project_id, student_id, enroll_id) VALUES
+    (2, 18, 'CS2024018'), (2, 19, 'CS2024019'), (2, 20, 'CS2024020'), (2, 21, 'CS2024021');
+
+-- E-Library Management (Team Lead: 22, Enroll ID: CS2024022)
+INSERT INTO project_team (project_id, student_id, enroll_id) VALUES
+    (3, 22, 'CS2024022'), (3, 23, 'CS2024023'), (3, 24, 'CS2024024'), (3, 25, 'CS2024025');
+
+-- IoT-Based Home Automation (Team Lead: 26, Enroll ID: CS2024026)
+INSERT INTO project_team (project_id, student_id, enroll_id) VALUES
+    (4, 26, 'CS2024026'), (4, 27, 'CS2024027'), (4, 28, 'CS2024028'), (4, 29, 'CS2024029');
+
+-- Blockchain Voting System (Team Lead: 30, Enroll ID: CS2024030)
+INSERT INTO project_team (project_id, student_id, enroll_id) VALUES
+    (5, 30, 'CS2024030'), (5, 31, 'CS2024031'), (5, 32, 'CS2024032'), (5, 33, 'CS2024033');
+
+-- Online Examination Portal (Pending) (Team Lead: 34, Enroll ID: CS2024034)
+INSERT INTO project_team (project_id, student_id, enroll_id) VALUES
+    (6, 34, 'CS2024034'), (6, 35, 'CS2024035'), (6, 36, 'CS2024036'), (6, 37, 'CS2024037');
+
+
+SELECT * FROM explorehub.project_team;
+
+
+
+some queries 
+
+
+Fetch All Users (Students & Teachers)
+
+SELECT * FROM explorehub.users;
+
+To fetch users by role:
+
+SELECT * FROM explorehub.users WHERE role = 'Student'; -- Fetch all students
+SELECT * FROM explorehub.users WHERE role = 'Teacher'; -- Fetch all teachers
+
+Fetch All Departments
+SELECT * FROM explorehub.departments;
+
+Fetch All Projects
+SELECT * FROM explorehub.projects;
+
+To check approved and pending projects separately:
+
+SELECT * FROM explorehub.projects WHERE status = 'approved';
+SELECT * FROM explorehub.projects WHERE status = 'pending';
+
+Fetch Project Teams
+
+SELECT * FROM explorehub.project_team;
+
+To check which students are assigned to a specific project:
+
+SELECT pt.project_id, p.title, pt.student_id, u.name, u.enroll_id 
+FROM explorehub.project_team pt
+JOIN explorehub.projects p ON pt.project_id = p.project_id
+JOIN explorehub.users u ON pt.student_id = u.user_id
+WHERE pt.project_id = 1; -- Change project_id as needed
+
+Fetch Projects with Guide Details
+
+SELECT p.project_id, p.title, p.status, t.name AS guide_name, t.enroll_id AS guide_enroll_id
+FROM explorehub.projects p
+JOIN explorehub.users t ON p.guide_id = t.user_id
+WHERE t.role = 'Teacher';
+
+
+
+
+Fetch Students Along with Their Projects
+
+SELECT p.project_id, p.title, u.user_id, u.name, u.enroll_id 
+FROM explorehub.project_team pt
+JOIN explorehub.projects p ON pt.project_id = p.project_id
+JOIN explorehub.users u ON pt.student_id = u.user_id
+ORDER BY p.project_id;
+
+
+
+
+
+
+Fetch All Users (Ordered by Department & Role)
+
+SELECT * FROM explorehub.users ORDER BY department_id, role;
+
+
+
+Fetch Only Pending Projects with Guide Details
+
+SELECT p.project_id, p.title, g.name AS guide_name, g.enroll_id AS guide_enroll_id
+FROM explorehub.projects p
+JOIN explorehub.users g ON p.guide_id = g.user_id
+WHERE p.status = 'pending';
+
+Fetch Project Teams (Students Assigned to Each Project)
+
+SELECT pt.project_id, p.title AS project_title, pt.student_id, u.name AS student_name, u.enroll_id
+FROM explorehub.project_team pt
+JOIN explorehub.projects p ON pt.project_id = p.project_id
+JOIN explorehub.users u ON pt.student_id = u.user_id
+ORDER BY pt.project_id, pt.student_id;
+
+Fetch All Projects for a Specific Department (Example: CSE)
+
+SELECT * FROM explorehub.projects WHERE department_id = 1; -- Change department_id as needed
+
+Fetch All Teachers Who Have Approved Projects
+
+SELECT DISTINCT u.user_id, u.name AS teacher_name, u.enroll_id
+FROM explorehub.users u
+JOIN explorehub.projects p ON u.user_id = p.guide_id
+WHERE p.status = 'approved' AND u.role = 'Teacher';
+
+
+
+Fetch Students Who Are Team Leaders in a Project
+
+SELECT p.project_id, p.title, u.user_id AS team_leader_id, u.name AS team_leader_name, u.enroll_id
+FROM explorehub.projects p
+JOIN explorehub.users u ON p.student_id = u.user_id
+WHERE u.role = 'Student';
+
+Count the Number of Students Assigned to Each Project
+
+SELECT pt.project_id, p.title, COUNT(pt.student_id) AS total_students
+FROM explorehub.project_team pt
+JOIN explorehub.projects p ON pt.project_id = p.project_id
+GROUP BY pt.project_id;
+
+
+
+
+Fetch All Projects Along with Their Tech Stack
+
+
+SELECT project_id, title, tech_stack FROM explorehub.projects ORDER BY project_id;
+
+
+
+Fetch the Most Used Tech Stack in Projects
+
+SELECT tech_stack, COUNT(*) AS tech_usage_count
+FROM explorehub.projects
+GROUP BY tech_stack
+ORDER BY tech_usage_count DESC
+LIMIT 5; -- Fetch the top 5 most used tech stacks
+
+
+
+
+Fetch Projects Created in the Last 7 Days
+
+SELECT * FROM explorehub.projects WHERE created_at >= NOW() - INTERVAL 7 DAY;
+
+
+
+
+
+
+
+
+Fetch All Teachers with Their Departments
+
+SELECT u.user_id, u.name AS teacher_name, u.enroll_id, d.department_name
+FROM explorehub.users u
+JOIN explorehub.departments d ON u.department_id = d.department_id
+WHERE u.role = 'Teacher'
+ORDER BY d.department_id;
+
+
+Fetch All Students with Their Departments
+SELECT u.user_id, u.name AS student_name, u.enroll_id, d.department_name
+FROM explorehub.users u
+JOIN explorehub.departments d ON u.department_id = d.department_id
+WHERE u.role = 'Student'
+ORDER BY d.department_id;
+
+
+Fetch All Projects with Guide & Department Details
+
+SELECT p.project_id, p.title, p.status, g.name AS guide_name, g.enroll_id AS guide_enroll_id, d.department_name
+FROM explorehub.projects p
+JOIN explorehub.users g ON p.guide_id = g.user_id
+JOIN explorehub.departments d ON p.department_id = d.department_id
+ORDER BY p.project_id;
+
+Fetch the Count of Projects in Each Department
+
+SELECT d.department_name, COUNT(p.project_id) AS total_projects
+FROM explorehub.projects p
+JOIN explorehub.departments d ON p.department_id = d.department_id
+GROUP BY d.department_id;
+
+
+
+ Fetch the Total Number of Students in Each Department
+
+SELECT d.department_name, COUNT(u.user_id) AS total_students
+FROM explorehub.users u
+JOIN explorehub.departments d ON u.department_id = d.department_id
+WHERE u.role = 'Student'
+GROUP BY d.department_id;
+
+
+--Fetch Only Pending Projects with Guide Details
+SELECT p.project_id, p.title, g.name AS guide_name, g.enroll_id AS guide_enroll_id
+FROM explorehub.projects p
+JOIN explorehub.users g ON p.guide_id = g.user_id
+WHERE p.status = 'pending';
+
+
+Fetch Project Teams (Students Assigned to Each Project)
+
+SELECT pt.project_id, p.title AS project_title, pt.student_id, u.name AS student_name, u.enroll_id
+FROM explorehub.project_team pt
+JOIN explorehub.projects p ON pt.project_id = p.project_id
+JOIN explorehub.users u ON pt.student_id = u.user_id
+ORDER BY pt.project_id, pt.student_id;
+
+
+Fetch All Projects for a Specific Department (Example: CSE)
+
+SELECT * FROM explorehub.projects WHERE department_id = 1; -- Change department_id as needed
+
+
+
+Fetch All Teachers Who Have Approved Projects
+
+SELECT DISTINCT u.user_id, u.name AS teacher_name, u.enroll_id
+FROM explorehub.users u
+JOIN explorehub.projects p ON u.user_id = p.guide_id
+WHERE p.status = 'approved' AND u.role = 'Teacher';
+
+
+
+
+
+Fetch Students Who Are Team Leaders in a Project
+
+SELECT p.project_id, p.title, u.user_id AS team_leader_id, u.name AS team_leader_name, u.enroll_id
+FROM explorehub.projects p
+JOIN explorehub.users u ON p.student_id = u.user_id
+WHERE u.role = 'Student';
+
+
+
+
+
+Count the Number of Students Assigned to Each Project
+
+SELECT pt.project_id, p.title, COUNT(pt.student_id) AS total_students
+FROM explorehub.project_team pt
+JOIN explorehub.projects p ON pt.project_id = p.project_id
+GROUP BY pt.project_id;
+
+
+
+
+
+
+
+
+Fetch All Projects Along with Their Tech Stack
+
+SELECT project_id, title, tech_stack FROM explorehub.projects ORDER BY project_id;
+
+
+
+
+
+Fetch the Most Used Tech Stack in Projects
+
+SELECT tech_stack, COUNT(*) AS tech_usage_count
+FROM explorehub.projects
+GROUP BY tech_stack
+ORDER BY tech_usage_count DESC
+LIMIT 5; -- Fetch the top 5 most used tech stacks
+
+
+
+
+
+
+
+1. Fetch All Teachers with Department Name
+
+
+SELECT u.user_id, u.name AS teacher_name, u.enroll_id, d.department_name
+FROM explorehub.users u
+JOIN explorehub.departments d ON u.department_id = d.department_id
+WHERE u.role = 'Teacher'
+ORDER BY d.department_id;
+
+2. Fetch All Students with Department Name
+
+
+SELECT u.user_id, u.name AS student_name, u.enroll_id, d.department_name
+FROM explorehub.users u
+JOIN explorehub.departments d ON u.department_id = d.department_id
+WHERE u.role = 'Student'
+ORDER BY d.department_id;
+
+
+3. Fetch All Projects with Guide and Department Details
+
+
+SELECT p.project_id, p.title, p.status, g.name AS guide_name, g.enroll_id AS guide_enroll_id, d.department_name
+FROM explorehub.projects p
+JOIN explorehub.users g ON p.guide_id = g.user_id
+JOIN explorehub.departments d ON p.department_id = d.department_id
+ORDER BY p.project_id;
+
+
+4. Count Total Projects per Department
+
+SELECT d.department_name, COUNT(p.project_id) AS total_projects
+FROM explorehub.projects p
+JOIN explorehub.departments d ON p.department_id = d.department_id
+GROUP BY d.department_id;
+
+
+
+5. Count Total Students per Department
+
+
+SELECT d.department_name, COUNT(u.user_id) AS total_students
+FROM explorehub.users u
+JOIN explorehub.departments d ON u.department_id = d.department_id
+WHERE u.role = 'Student'
+GROUP BY d.department_id;
+
+
+

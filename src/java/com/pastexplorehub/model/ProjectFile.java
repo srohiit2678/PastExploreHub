@@ -1,7 +1,9 @@
 
 package com.pastexplorehub.model;
 import com.pastexplorehub.utils.DBConnection;
+import java.io.InputStream;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.Timestamp;
@@ -101,4 +103,55 @@ public class ProjectFile {
         return files;
     }
 
+    //file_id (Auto-Incriment), project_id, file_data, file_name, file_type, uploaded_at
+
+    public boolean saveFile(int project_id,InputStream fileData,String fileName,String file_type)
+    {
+        boolean is_save = false;
+        try
+        {
+            Connection con = DBConnection.getConnection();
+            PreparedStatement st = con.prepareStatement("INSERT INTO files (project_id,file_data, file_name, file_type, uploaded_at) values(?,?,?,?,NOW())");
+            st.setInt(1, project_id);
+            st.setBlob(2, fileData);
+            st.setString(3, fileName);
+            st.setString(4, file_type);
+            is_save = st.executeUpdate()!=0?true:false;
+        con.close();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        
+     return is_save;   
+    }
+
+    
+    public static ProjectFile getFileById(int file_Id)
+    {
+        ProjectFile file = new ProjectFile();
+        try
+        {
+            Connection con = DBConnection.getConnection();
+            //file_data, file_name, file_type
+            PreparedStatement st = con.prepareStatement("SELECT file_data, file_name, file_type FROM files WHERE file_id = ?");
+            st.setInt(1, file_Id);
+            ResultSet rs = st.executeQuery();
+            if(rs.next())
+            {
+                file.setFileData(rs.getBytes("file_data")); // binary data
+                file.setFileName(rs.getString("file_name"));
+                file.setFileType(rs.getString("file_type"));
+           }
+            con.close();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        
+        return file;
+    }
+    
 }
