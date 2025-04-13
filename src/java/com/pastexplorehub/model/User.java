@@ -15,7 +15,18 @@ public class User {
     private String password;
     private String role; // Student, Teacher, Admin
     private int department_id;
+    private String department_name;// get from Department
 
+    public String getDepartment_name() {
+        if(Department.getDepartmentNameById(department_id)==null)
+        return "Not A Valid Id";
+        return Department.getDepartmentNameById(department_id);
+    }
+   
+    public void setDepartment_name(String department_name) {
+        this.department_name = department_name;
+    }
+    
     public void setUserId(int userId) {
         this.userId = userId;
     }
@@ -25,9 +36,7 @@ public class User {
     public void setDepartment_id(int department_id) {
         this.department_id = department_id;
     }
-    public int getDepartment_id() {
-        return department_id;
-    }
+    public int getDepartment_id() {  return department_id; }
     public String getEnrollId() { return enrollId; }
     public void setEnrollId(String enrollId) { this.enrollId = enrollId; }
     public String getName() { return name; }
@@ -39,33 +48,94 @@ public class User {
     public String getRole() { return role; }
     public void setRole(String role) { this.role = role; }   
     
+    public static int getDepartmentIdByEnroll(String enroll)
+    {
+        if(enroll==null)
+        { // if no enroll get
+            throw new UnsupportedOperationException("Not supported yet.");
+        }
+        int id=0;
+        try
+        {
+            Connection con = DBConnection.getConnection();
+            PreparedStatement st = con.prepareStatement("SELECT department_id FROM USERS WHERE enroll_id=?");
+//user_id, enroll_id, name, email, password, role, department_id
+            st.setString(1, enroll);
+            ResultSet rs = st.executeQuery();
+            if(rs.next())
+            {
+               id =  rs.getInt("department_id");
+               System.out.println(id);
+            }
+        con.close();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return id;        
+    }
+    
+    public static int getIdByEnroll(String enroll)
+    {
+        if(enroll==null)
+        { // if no enroll get
+            throw new UnsupportedOperationException("Not supported yet.");
+        }
+        int id=0;
+        try
+        {
+            Connection con = DBConnection.getConnection();
+            PreparedStatement st = con.prepareStatement("SELECT user_id FROM users WHERE enroll_id=?");
+//user_id, enroll_id, name, email, password, role, department_id
+            st.setString(1, enroll);
+            ResultSet rs = st.executeQuery();
+            if(rs.next())
+            {
+               id =  rs.getInt("user_id");
+               System.out.println(id);
+            }
+        con.close();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return id;
+    }
+    
     public boolean isValidUser(String enroll_id,String password){
         
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement st = conn.prepareStatement("SELECT name, role, email, department_id, password FROM users WHERE enroll_id = ?"))
-        {
+        try
+        {    
+            Connection con = DBConnection.getConnection();
+            PreparedStatement st = con.prepareStatement("SELECT * FROM users WHERE enroll_id = ? and password= ? ");
+        
             st.setString(1, enroll_id);
+            st.setString(2, password);
+            
             ResultSet rs = st.executeQuery();
             if (rs.next()){
-                this.password  = rs.getString("password");
-                this.role = rs.getString("role");
+                this.userId = rs.getInt("user_id");
+                this.enrollId = rs.getString("enroll_id");
                 this.name = rs.getString("name");
                 this.email = rs.getString("email");
+                this.password  = rs.getString("password");               
+                this.role = rs.getString("role");
                 this.department_id = rs.getInt("department_id");
-              
             }
             else
             {
                 return false;
             }
-        conn.close();
+        con.close();
         }
         catch(Exception e)
         {
             e.printStackTrace();
             return false;         
         }
-        return this.password.equals(password);
+        return true;
     }
    
     public boolean registerUser() {
@@ -111,6 +181,8 @@ public class User {
         }      
          return name;
     }
+
+  
 }
 
 /*

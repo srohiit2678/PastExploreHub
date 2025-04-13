@@ -15,6 +15,13 @@ public class ProjectTages {
 private int tagId;
 private String tagName;
 
+    public ProjectTages(){}
+
+    public ProjectTages(int tagId, String tagName) {
+        this.tagId = tagId;
+        this.tagName = tagName;
+    }
+
     public void setTagId(int tagId) {
         this.tagId = tagId;
     }
@@ -31,7 +38,7 @@ private String tagName;
         return tagName;
     }
 
-    public static String getTagesByTagId(int project_id)
+    public static String getTagesByProjectId(int project_id)
     {
         String tag = null;
         try(Connection con = DBConnection.getConnection();
@@ -49,4 +56,28 @@ private String tagName;
         }
         return tag;
     }
+
+        public static List<ProjectTages> getTages()
+    {
+        List<ProjectTages> tagList = new ArrayList<>();
+        
+        try
+        {
+        Connection con = DBConnection.getConnection();
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery("select tag_id, tag_name from tags");
+        while(rs.next())
+        {
+            ProjectTages tags = new ProjectTages(rs.getInt("tag_id"),rs.getString("tag_name"));
+            tagList.add(tags);
+        }
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return tagList;
+    }
+
+    
 }

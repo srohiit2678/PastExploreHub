@@ -106,7 +106,7 @@ header {
 
 .header-left {
   display: flex;
-  align-items: left;
+  align-items: center;
 }
 
 #search {
@@ -116,58 +116,66 @@ header {
   border-radius: 5px;
 }
 
-/* Content Sections */
-.content-section {
-  margin-top: 20px;
-  background: white;
-  padding: 25px;
+/* Container */
+.container {
+  max-width: 100%;
+  margin: 20px auto;
+  background-color: white;
+  padding: 20px;
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
-.project-list{
-    margin-top: 20px;
-}
 
-/* Table */
+/* Table Styles */
 .table-responsive {
   overflow-x: auto;
-  border-radius: 10px;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
+  margin-bottom: 20px;
 }
 
 th, td {
-  padding: 10px;
+  padding: 10px 15px;
+  text-align: center;
   border-bottom: 1px solid #ddd;
-  text-align: left;
 }
 
 th {
-  background: #34495e;
+  background-color: #34495e;
   color: white;
+  font-weight: bold;
 }
 
+tr:nth-child(even) {
+  background-color: #f8f8f8;
+}
 
+tr:hover {
+  background-color: #ecf0f1;
+}
 
-td:nth-child(4), th:nth-child(4) {
+.total {
+  font-weight: bold;
+  background-color: #e8f5e9;
+}
+
+.count {
   text-align: center;
-
 }
 
-td:nth-child(5), th:nth-child(5) {
-  text-align: center;
-
+/* Project list styling */
+.project-list {
+  margin-top: 20px;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
-
-td:nth-child(6), th:nth-child(6) {
-  text-align: center;
-}
-
-
+/* Status indicators */
 .status {
   display: inline-block;
   width: 15px;
@@ -222,144 +230,17 @@ button {
   background: #2980b9;
 }
 
-
-
-@media (max-width: 768px) {
-  header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  
-  #search {
-    margin-top: 10px;
-    width: 100%;
-  }
-  
-  .pagination {
-    flex-direction: column;
-    gap: 10px;
-  }
-}
-
-@media (max-width: 480px) {
-  th, td {
-    padding: 8px 5px;
-    font-size: 14px;
-  }
-  
-  button {
-    padding: 4px 8px;
-  }
-}
-
-
-.view {
-  background: #3498db;
-  color: white;
-}
-
-/* Pagination */
-.pagination {
-  margin-top: 15px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.pagination a {
-  padding: 8px 12px;
-  margin: 0 20px;
-  text-decoration: none;
-  color: white;
-  background: #3498db;
-  border-radius: 5px;
-}
-
-.pagination a:hover {
-  background: #2980b9;
-}
-
-/* Submit Project Form Styles */
-#submit-content {
-  padding: 20px;
-}
-
-.submit-form-container {
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-#submit-content form {
-  width: 100%;
-}
-
-#submit-content label {
-  font-weight: bold;
-  display: block;
-  margin-top: 15px;
-  color: #333;
-}
-
-#submit-content label.required::after {
-  content: " *";
-  color: red;
-}
-
-#submit-content input,
-#submit-content select,
-#submit-content textarea {
-  width: 100%;
-  padding: 10px;
-  margin-top: 5px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-sizing: border-box;
-}
-
-#submit-content textarea {
-  min-height: 100px;
-}
-
-#submit-content .team-member {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  margin-top: 5px;
-  margin-bottom: 15px;
-}
-
-#submit-content .team-member input {
-  flex: 1;
-}
-
-#submit-content .team-member button {
-  background-color: #e74c3c;
-  color: white;
-}
-
-#submit-content button[type="button"] {
-  background-color: #3498db;
-  color: white;
-  margin: 10px 0;
-}
-
-#submit-content button[type="submit"] {
-  background-color: #2ecc71;
-  color: white;
-  padding: 10px 20px;
-  font-size: 16px;
-  margin-top: 20px;
-  width: auto;
-}
-
-#submit-content button:hover {
-  opacity: 0.9;
+/* Header styles for details page */
+header h1 {
+  margin: 0;
+  padding: 10px 0;
 }
 
 /* Responsive Design */
 @media (max-width: 992px) {
   .sidebar {
     transform: translateX(-250px);
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.2);
   }
   
   .sidebar.active {
@@ -378,11 +259,6 @@ button {
   #search {
     width: 150px;
   }
-
-  #submit-content .team-member {
-    flex-direction: column;
-    gap: 5px;
-  }
 }
 
 @media (max-width: 768px) {
@@ -399,6 +275,12 @@ button {
   .pagination {
     flex-direction: column;
     gap: 10px;
+    margin: auto;
+  }
+  
+  .container {
+    width: 95%;
+    margin: 10px auto;
   }
 }
 

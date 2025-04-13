@@ -22,7 +22,8 @@ public class UserLoginServlet extends HttpServlet {
         //PrintWriter out = response.getWriter();
         //out.println(enroll_id+"<br>"+password);
             // if user found with Wrong pass ir wright info
-        
+      //  System.out.println(enroll_id);
+      //  System.out.println(password);
         HttpSession session = request.getSession(false);
         if(session!=null)
          session.invalidate();
@@ -31,10 +32,13 @@ public class UserLoginServlet extends HttpServlet {
                
             // Create a new session only after successful login
                 session = request.getSession(true);
-                session.setAttribute("user", user.getName());
+                
+                session.setAttribute("user", user);
+                session.setAttribute("name", user.getName());
                 session.setAttribute("role", user.getRole());
                 session.setAttribute("enroll_id", enroll_id);            
-            
+                session.setAttribute("user_id", user.getUserId());            
+
                 // Redirect based on role
                 //System.out.println("see path"+request.getContextPath());
                   

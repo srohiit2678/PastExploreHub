@@ -15,7 +15,7 @@ body {
     background: rgb(212, 211, 211);
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 15px 15px 15px white;
+    box-shadow: 15px 15px 15px black;
     width: 800px;
 }
 

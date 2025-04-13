@@ -12,6 +12,43 @@
         <servlet-name>DashBoardServlet</servlet-name>
         <servlet-class>com.pastexplorehub.controller.DashBoardServlet</servlet-class>
     </servlet>
+    <listener>
+        <listener-class>com.pastexplorehub.utils.AppContextListener</listener-class>
+    </listener>
+    <servlet>
+        <servlet-name>UploadProjectDetails</servlet-name>
+        <servlet-class>com.pastexplorehub.controller.UploadProjectDetails</servlet-class>
+        <multipart-config>
+            <location>C:/temp</location>
+            <!-- Make sure this directory exists -->
+            <max-file-size>52428800</max-file-size>
+            <!-- 50MB -->
+            <max-request-size>104857600</max-request-size>
+            <!-- 100MB -->
+            <file-size-threshold>2097152</file-size-threshold>
+            <!-- 2MB -->
+        </multipart-config>
+    </servlet>
+    <servlet>
+        <servlet-name>FatchProjectDetails</servlet-name>
+        <servlet-class>com.pastexplorehub.controller.FatchProjectDetails</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetFileServlet</servlet-name>
+        <servlet-class>com.pastexplorehub.controller.GetFileServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewActivityServlet</servlet-name>
+        <servlet-class>com.pastexplorehub.controller.ViewActivityServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProjectApprovalServlet</servlet-name>
+        <servlet-class>com.pastexplorehub.controller.ProjectApprovalServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LogOut</servlet-name>
+        <servlet-class>com.pastexplorehub.controller.LogOut</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UserLoginServlet</servlet-name>
         <url-pattern>/UserLoginServlet</url-pattern>
@@ -23,6 +60,30 @@
     <servlet-mapping>
         <servlet-name>DashBoardServlet</servlet-name>
         <url-pattern>/DashBoardServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UploadProjectDetails</servlet-name>
+        <url-pattern>/UploadProjectDetails</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FatchProjectDetails</servlet-name>
+        <url-pattern>/FatchProjectDetails</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetFileServlet</servlet-name>
+        <url-pattern>/GetFileServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewActivityServlet</servlet-name>
+        <url-pattern>/ViewActivityServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProjectApprovalServlet</servlet-name>
+        <url-pattern>/ProjectApprovalServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogOut</servlet-name>
+        <url-pattern>/LogOut</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
