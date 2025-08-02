@@ -34,6 +34,13 @@
             display: flex;
             flex-direction: column;
         }
+        
+        
+        .popup-content2 {
+            background: white;
+            width: 50%; height: 35vh;
+           
+        }
 
         .popup-content iframe {
             flex: 1;
@@ -54,6 +61,15 @@
         .approved-row { background-color: #d4edda; }
         .rejected-row { background-color: #f8d7da; }
         .pending-row { background-color: #fff3cd; }
+
+   .no-border {
+    border: none;
+    outline: none;
+    background-color: transparent; /* optional, for fully clean look */
+    font-family: inherit;
+    font-size: inherit;
+  }
+
     </style>
 </head>
 <body>
@@ -108,11 +124,9 @@
                                 <td><%= project.getTitle() %></td>
                                 <td><%= project.getCreatedAt().getDate() %>-<%= project.getCreatedAt().getMonth() + 1 %>-<%= project.getCreatedAt().getYear() + 1900 %></td>
                                 <td class="status-cell">
-                                    <select class="status-dropdown">
-                                        <option value="pending" selected>Pending</option>
-                                        <option value="approved">Approved</option>
-                                        <option value="rejected">Rejected</option>
-                                    </select>
+                                    <button class="view" onclick="openPopup2(<%= project.getProjectId()%>)">
+                                        <i class="fas fa-edit"></i>
+                                    </button>                                   
                                 </td>
                                 <td>
                                     <button class="view" onclick="openPopup(<%= project.getProjectId() %>)">
@@ -141,6 +155,38 @@
         </div>
     </div>
 
+    
+    <!-- Popup Container2 -->
+    <div id="popupContainer2" class="popup">
+        <div class="popup-content2">
+            <div class="close-btn" onclick="closePopup()"> Close</div>
+           <form action="\PastExploreHub\TeacherAction">
+            <table cellpadding="20px">
+                <tr>
+                    <td>
+                      <lable for="project_id">Project ID : </lable>
+                      <input type="text" name = "project_id" id="_id" readonly class ="no-border">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    <textarea name="message" style="width: 100%; height: 15vh" placeholder="Type your message..."></textarea>         
+                    </td>
+                </tr>
+                <tr>
+                     <td>
+                       <input type="Submit" name="resion-status" value="Approve">
+                       <input type="Submit" name="resion-status" value="Pending">
+                       <input type="Submit" name="resion-status" value="Reject">        
+                     </td>
+                </tr>
+            </table> 
+               
+           </form>
+        </div>
+    </div>
+
+    
     <!-- Scripts -->
     <script>
         function openPopup(projectId) {
@@ -148,10 +194,20 @@
             iframe.src = "${pageContext.request.contextPath}/FatchProjectDetails?id=" + projectId;
             document.getElementById("popupContainer").style.display = "flex";
         }
+        
+        function openPopup2(projectId) {
+            const iframe = document.querySelector("#popupContainer iframe");
+            document.getElementById("popupContainer2").style.display = "flex";
+            document.getElementById('_id').value=projectId+100;            
+
+    }
+        
         function closePopup() {
             document.getElementById("popupContainer").style.display = "none";
-        }
+            document.getElementById("popupContainer2").style.display = "none";
 
+        }
+          
         document.addEventListener("DOMContentLoaded", function () {
             const statusDropdowns = document.querySelectorAll(".status-dropdown");
             const tableRows = document.querySelectorAll("tbody tr");
@@ -176,7 +232,7 @@
             statusDropdowns.forEach(dropdown => {
                 const contextPath = "<%= request.getContextPath() %>";
                 dropdown.addEventListener("change", function () {
-            alert("your Action is saved will show you effect on next visite");
+           // alert("your Action is saved will show you effect on next visite");
                     const row = this.closest("tr");
                     const projectId = row.getAttribute("data-project-id");
                     const newStatus = this.value;
