@@ -49,7 +49,7 @@ public class UserLoginServlet extends HttpServlet {
         }
         else // if Incorrect user OR password
         {
-                request.setAttribute("loginError", "Invalid User & Password!"); 
+                 request.setAttribute("loginError", "Invalid User & Password!"); 
                 //response.sendRedirect(request.getContextPath() + "/views/login.jsp?loginError=Invalid User & Password!");
                  request.getRequestDispatcher("/views/login.jsp").forward(request, response);
   

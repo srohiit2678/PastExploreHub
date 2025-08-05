@@ -32,6 +32,7 @@ public class Project implements Serializable {
     private String tages;  // tag  for this project
     private String guidName;
     private List<String> member;
+    private String message;
 
     
     
@@ -48,7 +49,7 @@ VALUES
     public Project() { }
 
     
-    public Project(int projectId, String title, String description, int studentId, int guideId, String guidName, String status, int departmentId, Timestamp createdAt, String projectLink, String techStack, String enroll_id, List<ProjectFile> files, String tages) {
+    public Project(int projectId, String title, String description, int studentId, int guideId, String guidName, String status, int departmentId, Timestamp createdAt, String projectLink, String techStack, String enroll_id, List<ProjectFile> files, String tages,String message) {
         this.projectId = projectId;
         this.title = title;
         this.description = description;
@@ -63,8 +64,17 @@ VALUES
         this.enroll_id = enroll_id;
         this.files = files;
         this.tages = tages;
+        this.message = message;
     }
 
+    
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 
     public List<String> getMember() {
         return member;
@@ -265,7 +275,7 @@ VALUES
            {
             int project_id = rs.getInt("project_id");
             int guid_id = rs.getInt("guide_id");
-            Project project = new Project(project_id,rs.getString("title"),rs.getString("description"),rs.getInt("student_id"),guid_id,ProjectGuid.getGuidNameById(guid_id),"Approved",rs.getInt("department_id"),rs.getTimestamp("created_at"),rs.getString("project_link"),rs.getString("tech_stack"),rs.getString("enroll_id"),ProjectFile.getProjectByProjectId(project_id),ProjectTages.getTagesByProjectId(project_id));
+            Project project = new Project(project_id,rs.getString("title"),rs.getString("description"),rs.getInt("student_id"),guid_id,ProjectGuid.getGuidNameById(guid_id),"Approved",rs.getInt("department_id"),rs.getTimestamp("created_at"),rs.getString("project_link"),rs.getString("tech_stack"),rs.getString("enroll_id"),ProjectFile.getProjectByProjectId(project_id),ProjectTages.getTagesByProjectId(project_id),rs.getString("message"));
             projects.add(project);             
            }
         }
@@ -289,7 +299,7 @@ VALUES
            {
             int project_id = rs.getInt("project_id");
             int guid_id = rs.getInt("guide_id");
-            Project project = new Project(project_id,rs.getString("title"),rs.getString("description"),rs.getInt("student_id"),guid_id,ProjectGuid.getGuidNameById(guid_id),"Pendding",rs.getInt("department_id"),rs.getTimestamp("created_at"),rs.getString("project_link"),rs.getString("tech_stack"),rs.getString("enroll_id"),ProjectFile.getProjectByProjectId(project_id),ProjectTages.getTagesByProjectId(project_id));
+            Project project = new Project(project_id,rs.getString("title"),rs.getString("description"),rs.getInt("student_id"),guid_id,ProjectGuid.getGuidNameById(guid_id),"Pendding",rs.getInt("department_id"),rs.getTimestamp("created_at"),rs.getString("project_link"),rs.getString("tech_stack"),rs.getString("enroll_id"),ProjectFile.getProjectByProjectId(project_id),ProjectTages.getTagesByProjectId(project_id),rs.getString("message"));
             projects.add(project);             
            }
            st.close();
@@ -314,7 +324,7 @@ VALUES
            {
             int project_id = rs.getInt("project_id");
             int guid_id = rs.getInt("guide_id");
-            Project project = new Project(project_id,rs.getString("title"),rs.getString("description"),rs.getInt("student_id"),guid_id,ProjectGuid.getGuidNameById(guid_id),"Approved",rs.getInt("department_id"),rs.getTimestamp("created_at"),rs.getString("project_link"),rs.getString("tech_stack"),rs.getString("enroll_id"),ProjectFile.getProjectByProjectId(project_id),ProjectTages.getTagesByProjectId(project_id));
+            Project project = new Project(project_id,rs.getString("title"),rs.getString("description"),rs.getInt("student_id"),guid_id,ProjectGuid.getGuidNameById(guid_id),"Approved",rs.getInt("department_id"),rs.getTimestamp("created_at"),rs.getString("project_link"),rs.getString("tech_stack"),rs.getString("enroll_id"),ProjectFile.getProjectByProjectId(project_id),ProjectTages.getTagesByProjectId(project_id),rs.getString("message"));
             projects.add(project);             
            }
            st.close();
@@ -339,7 +349,7 @@ VALUES
            {
             int project_id = rs.getInt("project_id");
             int guid_id = rs.getInt("guide_id");
-            Project project = new Project(project_id,rs.getString("title"),rs.getString("description"),rs.getInt("student_id"),guid_id,ProjectGuid.getGuidNameById(guid_id),"Approved",rs.getInt("department_id"),rs.getTimestamp("created_at"),rs.getString("project_link"),rs.getString("tech_stack"),rs.getString("enroll_id"),ProjectFile.getProjectByProjectId(project_id),ProjectTages.getTagesByProjectId(project_id));
+            Project project = new Project(project_id,rs.getString("title"),rs.getString("description"),rs.getInt("student_id"),guid_id,ProjectGuid.getGuidNameById(guid_id),"Approved",rs.getInt("department_id"),rs.getTimestamp("created_at"),rs.getString("project_link"),rs.getString("tech_stack"),rs.getString("enroll_id"),ProjectFile.getProjectByProjectId(project_id),ProjectTages.getTagesByProjectId(project_id),rs.getString("message"));
             projects.add(project);             
            }
         }
@@ -361,7 +371,7 @@ VALUES
            while(rs.next())
            {
             int project_id = rs.getInt("project_id");
-            Project project = new Project(project_id,rs.getString("title"),rs.getString("description"),rs.getInt("student_id"),guide_id,ProjectGuid.getGuidNameById(guide_id),"Approved",rs.getInt("department_id"),rs.getTimestamp("created_at"),rs.getString("project_link"),rs.getString("tech_stack"),rs.getString("enroll_id"),ProjectFile.getProjectByProjectId(project_id),ProjectTages.getTagesByProjectId(project_id));
+            Project project = new Project(project_id,rs.getString("title"),rs.getString("description"),rs.getInt("student_id"),guide_id,ProjectGuid.getGuidNameById(guide_id),"Approved",rs.getInt("department_id"),rs.getTimestamp("created_at"),rs.getString("project_link"),rs.getString("tech_stack"),rs.getString("enroll_id"),ProjectFile.getProjectByProjectId(project_id),ProjectTages.getTagesByProjectId(project_id),rs.getString("message"));
             projects.add(project);             
            }
            // System.out.print("All projects are these = "+projects);
@@ -473,23 +483,53 @@ VALUES
     }
    
     
-    
-    public static void setStatus(int project_id,String Status)
+   // 
+    public static List<Project> getMyProjects(String user_id)throws SQLException
+    {   List<Project> projects = new ArrayList<>();
+        try
+        {
+           Connection conn = DBConnection.getConnection();
+           Statement st = conn.createStatement();
+           ResultSet rs = st.executeQuery("Select * from projects where student_id ="+Integer.parseInt(user_id));
+           while(rs.next())
+           {
+            int project_id = rs.getInt("project_id");
+            int guid_id = rs.getInt("guide_id");
+            Project project = new Project(project_id,rs.getString("title"),rs.getString("description"),rs.getInt("student_id"),guid_id,ProjectGuid.getGuidNameById(guid_id),"Approved",rs.getInt("department_id"),rs.getTimestamp("created_at"),rs.getString("project_link"),rs.getString("tech_stack"),rs.getString("enroll_id"),ProjectFile.getProjectByProjectId(project_id),ProjectTages.getTagesByProjectId(project_id),rs.getString("message"));
+            System.out.println(project.getMessage());
+            projects.add(project);             
+           }
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+                
+     return projects;
+    }
+            
+    public static boolean setStatus(int project_id,String message,String Status)
     {
+        boolean status = false;
         try
         {
             Connection con = DBConnection.getConnection();
-            PreparedStatement st = con.prepareStatement("UPDATE projects SET status = ? WHERE project_id = ?");
+            PreparedStatement st = con.prepareStatement("UPDATE projects SET status = ? ,message = ? WHERE project_id = ?");
             
             st.setString(1, Status);
-            st.setInt(2, project_id);
-            st.executeUpdate();
+            st.setString(2, message);
+            st.setInt(3, project_id);
+            status = (st.executeUpdate()!=0)?true:false;
         }
         catch(Exception e)
         {
            e.printStackTrace();
         }
+        return status;
     }
+    
+ 
+    
     
     @Override
     public String toString() {

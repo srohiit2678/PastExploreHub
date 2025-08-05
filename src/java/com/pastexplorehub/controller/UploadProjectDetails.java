@@ -4,6 +4,7 @@ import com.pastexplorehub.model.Project;
 import com.pastexplorehub.model.ProjectFile;
 import com.pastexplorehub.model.TeamMembers;
 import com.pastexplorehub.model.User;
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -120,25 +121,33 @@ public class UploadProjectDetails extends HttpServlet {
                 String pdfFileName = Paths.get(pdfPart.getSubmittedFileName()).getFileName().toString();
     
                 // Read PDF data using Java 8-compatible method
-                InputStream pdfFileData = pdfPart.getInputStream();
-                ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-                int bytesRead;
-                byte[] data = new byte[1024]; // Buffer of 1KB
+    InputStream pdfFileData = pdfPart.getInputStream();
 
-                while ((bytesRead = pdfFileData.read(data, 0, data.length)) != -1) {
-                buffer.write(data, 0, bytesRead);
-                }
+    // Convert InputStream to byte[] (for reuse)
+    ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+    byte[] temp = new byte[1024];
+    int bytesRead;
+
+    while ((bytesRead = pdfFileData.read(temp)) != -1) {
+        buffer.write(temp, 0, bytesRead);
+    }
+
+    byte[] pdfBytes = buffer.toByteArray(); // Store as byte[] to reuse the stream
+    pdfFileData.close(); // Close original InputStream
+
+    // Convert back to InputStream for saving to DB
+    InputStream finalStream = new ByteArrayInputStream(pdfBytes);
             //     String contentType = pdfPart.getContentType();
             //    out.println(pdfFileName);
             //    out.println(contentType);
             //    out.println(pdfPart.getSize());
             //    out.println(pdfPart.getName());
-              boolean isSave =   pf.saveFile(projectID,pdfFileData,pdfFileName,"application/pdf");
-    
+              boolean isSave =   pf.saveFile(projectID,finalStream,pdfFileName,"application/pdf");    
                 pdfFileData.close(); // Close stream after reading
            if(isSave)
             {
                     out.println("<h3><Center>Your Project Submited sussesfully wait for Your Guid Approvel... :)</Center></h3>");
+                    response.sendRedirect("/PastExploreHub/views/my_projects.jsp");
             }
             //    out.println("<h3>Project Code Field:</h3>");
             //    out.println("<p><strong>File Name:</strong> " + pdfFileName + "</p>");
@@ -149,6 +158,7 @@ public class UploadProjectDetails extends HttpServlet {
 }
             out.println("</body></html>");
         }
+      
     }
+    
 }
-
