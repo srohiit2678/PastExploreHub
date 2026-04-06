@@ -8,13 +8,12 @@ import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
-import java.io.Serializable;
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.Savepoint;
 import java.util.StringTokenizer;
 
-public class Project implements Serializable {
+public class Project  {
 
     private int projectId;
     private String title;
@@ -202,16 +201,17 @@ VALUES
               con.setAutoCommit(false);
             Savepoint  details = con.setSavepoint("details");
             PreparedStatement st = con.prepareStatement("INSERT INTO projects(title, description, student_id, guide_id, status, department_id, project_link, tech_stack, enroll_id) values (?,?,?,?,?,?,?,?,?)");
-//            System.out.println(getTitle());
-//            System.out.println(getDescription());
-//            System.out.println(User.getIdByEnroll(getEnroll_id()));
-//            System.out.println(getGuideId());
-//
-//            System.out.println(User.getDepartmentIdByEnroll(getEnroll_id()));
-//            System.out.println(getProjectLink());
-//            System.out.println(getTechStack());
-//            System.out.println(getEnroll_id());
+/*
+            System.out.println(getTitle());
+            System.out.println(getDescription());
+            System.out.println(User.getIdByEnroll(getEnroll_id()));
+            System.out.println(getGuideId());
 
+            System.out.println(User.getDepartmentIdByEnroll(getEnroll_id()));
+            System.out.println(getProjectLink());
+            System.out.println(getTechStack());
+            System.out.println(getEnroll_id());
+*/
             st.setString(1,getTitle());
             st.setString(2,getDescription());
             st.setInt(3,User.getIdByEnroll(getEnroll_id()));
@@ -228,8 +228,7 @@ VALUES
             }else{
                 con.rollback(details);
             }
-        //    System.out.println("yes project inserted : "+ update);
-            if(update != 0)
+                 if(update != 0)
             {
                 try
                 {

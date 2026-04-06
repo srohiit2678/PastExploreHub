@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Savepoint;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -108,23 +109,30 @@ public class ProjectFile {
 
     public boolean saveFile(int project_id,InputStream fileData,String fileName,String file_type)
     {
+        Connection connection;
         boolean is_save = false;
         try
         {
-            Connection con = DBConnection.getConnection();
-            PreparedStatement st = con.prepareStatement("INSERT INTO files (project_id,file_data, file_name, file_type, uploaded_at) values(?,?,?,?,NOW())");
+            connection = DBConnection.getConnection();
+            connection.setAutoCommit(false);
+            Savepoint files = connection.setSavepoint("files");
+            PreparedStatement st = connection.prepareStatement("INSERT INTO files (project_id,file_data, file_name, file_type, uploaded_at) values(?,?,?,?,NOW())");
             st.setInt(1, project_id);
             st.setBlob(2, fileData);
             st.setString(3, fileName);
             st.setString(4, file_type);
             is_save = st.executeUpdate()!=0?true:false;
-        con.close();
+            if(is_save == false){
+            connection.rollback(files);
+            connection.releaseSavepoint(files);
+            connection.commit();
+            }
+        connection.close();
         }
         catch(Exception e)
         {
             e.printStackTrace();
         }
-        
      return is_save;   
     }
 
