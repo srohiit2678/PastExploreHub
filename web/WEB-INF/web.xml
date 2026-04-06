@@ -12,23 +12,7 @@
         <servlet-name>DashBoardServlet</servlet-name>
         <servlet-class>com.pastexplorehub.controller.DashBoardServlet</servlet-class>
     </servlet>
-    <listener>
-        <listener-class>com.pastexplorehub.utils.AppContextListener</listener-class>
-    </listener>
-    <servlet>
-        <servlet-name>UploadProjectDetails</servlet-name>
-        <servlet-class>com.pastexplorehub.controller.UploadProjectDetails</servlet-class>
-        <multipart-config>
-            <location>C:/temp</location>
-            <!-- Make sure this directory exists -->
-            <max-file-size>52428800</max-file-size>
-            <!-- 50MB -->
-            <max-request-size>104857600</max-request-size>
-            <!-- 100MB -->
-            <file-size-threshold>2097152</file-size-threshold>
-            <!-- 2MB -->
-        </multipart-config>
-    </servlet>
+   
     <servlet>
         <servlet-name>FatchProjectDetails</servlet-name>
         <servlet-class>com.pastexplorehub.controller.FatchProjectDetails</servlet-class>
@@ -85,6 +69,25 @@
         <servlet-name>LogOut</servlet-name>
         <url-pattern>/LogOut</url-pattern>
     </servlet-mapping>
+   
+    <listener>
+        <listener-class>com.pastexplorehub.utils.AppContextListener</listener-class>
+    </listener>
+    <servlet>
+        <servlet-name>UploadProjectDetails</servlet-name>
+        <servlet-class>com.pastexplorehub.controller.UploadProjectDetails</servlet-class>
+        <multipart-config>
+            <location>C:/temp</location>
+            <!-- Make sure this directory exists -->
+            <max-file-size>52428800</max-file-size>
+            <!-- 50MB -->
+            <max-request-size>104857600</max-request-size>
+            <!-- 100MB -->
+            <file-size-threshold>2097152</file-size-threshold>
+            <!-- 2MB -->
+        </multipart-config>
+    </servlet>
+   
     <session-config>
         <session-timeout>30</session-timeout>
     </session-config>

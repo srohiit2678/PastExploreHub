@@ -7,6 +7,12 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import com.pastexplorehub.model.User;
 
+/*
+3 ways 
+1- interface servelet (perent)
+2- class genric Sservlet (child)
+3- class HttpServlet (Sub-child)
+*/
 
 /**
  *
@@ -21,7 +27,7 @@ public class UserLoginServlet extends HttpServlet {
       
         //PrintWriter out = response.getWriter();
         //out.println(enroll_id+"<br>"+password);
-            // if user found with Wrong pass ir wright info
+            // if user found with Wrong pass info
       //  System.out.println(enroll_id);
       //  System.out.println(password);
         HttpSession session = request.getSession(false);

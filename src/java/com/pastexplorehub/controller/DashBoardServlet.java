@@ -22,6 +22,7 @@ public class DashBoardServlet extends HttpServlet {
         
         List<Project> projects = Project.getALLApprovedProjects();
         List<Project> pending_projects = Project.getALLPendingProjects();
+        
         User user = (User)session.getAttribute("user");
         
         String enroll_id  = (String) session.getAttribute("enroll_id");
@@ -61,10 +62,3 @@ public class DashBoardServlet extends HttpServlet {
     }
     }
 }
-
-/*
-    }
-}
-
-
-*/

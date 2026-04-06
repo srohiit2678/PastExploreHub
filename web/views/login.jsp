@@ -23,7 +23,7 @@
         </div>
         <div class="login-section">
             <h2>Login</h2>
-       
+                       
            <form action="${pageContext.request.contextPath}/UserLoginServlet" method="POST" onsubmit="return validateLogin()">
                 <label for="enroll_id">Enrollment ID:</label>
                 <input type="text" id="enroll_id" name="enroll_id" placeholder="Enter your Enrollment ID" required>
@@ -32,6 +32,7 @@
                 <input type="password" id="password" name="password" placeholder="Enter your Password" required>
                                         
                 <button type="submit">Login</button>
+                
             </form>
             <p>New User? <a href="${pageContext.request.contextPath}/views/register.jsp">Sign Up</a>| <a href="forgot_password.jsp">Forgot your password?</a></p>
            <% String errorMessage = (String) request.getAttribute("loginError"); %>

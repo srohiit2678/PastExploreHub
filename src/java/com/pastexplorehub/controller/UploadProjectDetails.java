@@ -59,7 +59,7 @@ public class UploadProjectDetails extends HttpServlet {
 
             int projectID = addNewProject.submitProject();
           //  System.out.println(projectID);
-            
+            // add Team lead
             TeamMembers.addTeamMember(projectID,teamLeadEnrollment);
 
             // Handle Team Members (Multiple Members) pre- Registerd only allowed
@@ -73,7 +73,7 @@ public class UploadProjectDetails extends HttpServlet {
                 int i =0 ;
                 for (String EnrollEember : teamMembersEnroll) {
                    // out.println("<p>" + teamMembers[i++] +"\t"+EnrollEember+  "</p>"); 
-                  // add team members into project
+                  // add team members into project and data-base
                     TeamMembers.addTeamMember(projectID,EnrollEember);
                 
                 }

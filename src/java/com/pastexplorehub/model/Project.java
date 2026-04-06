@@ -8,15 +8,14 @@ import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 import java.io.Serializable;
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
+import java.sql.Savepoint;
 import java.util.StringTokenizer;
 
 public class Project implements Serializable {
 
-    private static final long serialVersionUID = 1L; // Add a unique ID// Your fields, constructors, getters, and setters
     private int projectId;
     private String title;
     private String description;
@@ -76,9 +75,6 @@ VALUES
     
     
     
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
 
     public String getGuidName() {
         return guidName;
@@ -203,6 +199,8 @@ VALUES
         try
         {//title, description, student_id, guide_id, status, department_id, created_at, project_link, tech_stack, enroll_id
             Connection con = DBConnection.getConnection();
+              con.setAutoCommit(false);
+            Savepoint  details = con.setSavepoint("details");
             PreparedStatement st = con.prepareStatement("INSERT INTO projects(title, description, student_id, guide_id, status, department_id, project_link, tech_stack, enroll_id) values (?,?,?,?,?,?,?,?,?)");
 //            System.out.println(getTitle());
 //            System.out.println(getDescription());
@@ -225,6 +223,11 @@ VALUES
             st.setString(9, getEnroll_id());
             
             int update = st.executeUpdate();
+            if(update != 0){
+                con.commit();
+            }else{
+                con.rollback(details);
+            }
         //    System.out.println("yes project inserted : "+ update);
             if(update != 0)
             {
@@ -242,7 +245,7 @@ VALUES
                 {
                     e.printStackTrace();
                 }
-            
+            con.releaseSavepoint(details);
             }
         con.close();
         }
